@@ -1,0 +1,95 @@
+{
+  "name": "reactive-json-editor",
+  "version": "1.0.0",
+  "description": "A React component for displaying JSON objects.",
+  "keywords": [],
+  "license": "MIT",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.min.js",
+    "types": "./dist/index.d.ts"
+  },
+  "main": "dist/index.min.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json"
+  ],
+  "workspaces": [
+    ".",
+    "demo"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:theme",
+    "build:js": "father build",
+    "build:theme": "node scripts/build-theme.cjs",
+    "dev": "cd demo&&npm run dev",
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky install",
+    "prepublishOnly": "father doctor && npm run build"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "chalk4cjs": "npm:chalk@^4.1.2",
+    "eslint": "^8.57.0",
+    "father": "^4.4.5",
+    "husky": "^9.1.1",
+    "less": "^4.2.0",
+    "lint-staged": "^15.2.7",
+    "postcss-less": "^6.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-packagejson": "^2.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "stylelint": "^16.7.0",
+    "stylelint-less": "^3.0.1",
+    "stylelint-order": "^6.0.4",
+    "typescript": "^5.5.3"
+  },
+  "peerDependencies": {
+    "less": "^4.2.0",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "ch1ny <regulus2916@163.com>"
+  ]
+}

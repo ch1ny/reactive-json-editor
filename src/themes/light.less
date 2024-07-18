@@ -1,0 +1,94 @@
+.reactive-json-editor.rje-theme-light {
+  background-color: #ffffff;
+
+  .rje- {
+    &key {
+      &-index {
+        color: #6c71c4;
+      }
+    }
+
+    &object {
+      &-size {
+        color: #888888;
+      }
+    }
+
+    &item {
+      &-type {
+        &-string {
+          color: #f25816;
+        }
+        &-boolean {
+          color: #2aa198;
+        }
+        &-undefined {
+          display: none;
+        }
+        // &-function {
+        // TODO:
+        // }
+        &-nan {
+          display: none;
+        }
+        &-infinity {
+          color: #d4a224;
+        }
+        &-integer {
+          color: #267bd2;
+        }
+        &-float {
+          color: #869900;
+        }
+        &-null {
+          display: none;
+        }
+        &-unknown {
+          display: none;
+        }
+      }
+
+      &-value {
+        font-weight: bold;
+
+        &-string {
+          color: #f25816;
+        }
+        &-boolean {
+          color: #2aa198;
+        }
+        &-undefined {
+          color: #586e75;
+          background-color: #ebebeb;
+          padding: 1px 2px;
+        }
+        // &-function {
+        // TODO:
+        // }
+        &-nan {
+          color: #d33682;
+          background-color: #ebebeb;
+          padding: 1px 2px;
+        }
+        &-infinity {
+          color: #d4a224;
+        }
+        &-integer {
+          color: #267bd2;
+        }
+        &-float {
+          color: #869900;
+        }
+        &-null {
+          color: #dc322f;
+          background-color: #ebebeb;
+          padding: 1px 2px;
+        }
+        &-unknown {
+          color: #ff0000;
+          padding: 1px 2px;
+        }
+      }
+    }
+  }
+}
