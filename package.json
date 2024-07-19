@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A React component for displaying JSON objects.",
   "keywords": [],
+  "repository": "git@github.com:ch1ny/reactive-json-editor.git",
   "license": "MIT",
   "exports": {
     "import": "./dist/index.js",

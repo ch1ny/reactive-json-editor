@@ -10,7 +10,7 @@ export default defineConfig({
     alias: {
       '~': path.resolve(__dirname, 'src'),
       '@': path.resolve(__dirname, '..', 'src'),
-      'reactive-json-editor': path.resolve(__dirname, '..', 'src', 'index.tsx'),
+      'reactive-json-editor': path.resolve(__dirname, '..', 'src', 'index.ts'),
     },
   },
 });

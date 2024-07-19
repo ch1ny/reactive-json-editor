@@ -28,7 +28,7 @@
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["../src/*"],
-      "reactive-json-editor": ["../src/index.tsx"]
+      "reactive-json-editor": ["../src/index.ts"]
     }
   },
   "include": ["src", "../src"]
