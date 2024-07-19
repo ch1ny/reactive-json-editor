@@ -1,4 +1,5 @@
 import { stopPropagation } from '@/common';
+import { useTypeParser } from '@/provider';
 import React, { memo, useMemo } from 'react';
 import { Indent } from '../indent';
 import { ItemRender } from '../item-render';
@@ -13,9 +14,11 @@ interface IProps {
 export const ObjectRender = memo(function ObjectRender(props: IProps) {
   const { name, data, indent = 0 } = props;
 
-  const size = useMemo(() => Object.keys(data).length, [data]);
+  const { typeParser, typeDisplayParser } = useTypeParser();
 
-  const isArray = useMemo(() => Array.isArray(data), [data]);
+  const size = useMemo(() => Object.keys(data).length, [data]);
+  const type = useMemo(() => typeParser(data), [typeParser, data]);
+  const isArray = useMemo(() => type === 'array', [type]);
 
   return (
     <div className="rje-object">
@@ -33,31 +36,30 @@ export const ObjectRender = memo(function ObjectRender(props: IProps) {
             <div className="rje-colons">:</div>
           </>
         )}
-        <div className="rje-brackets">{isArray ? '[' : '{'}</div>
+        <div className="rje-brackets">{type === 'array' ? '[' : '{'}</div>
         <div className="rje-extra rje-object-extra" onClick={stopPropagation}>
           <div className="rje-object-size">{size} items</div>
         </div>
       </div>
       <div className="rje-object-data">
         {Object.entries(data).map(([k, v], i) => {
-          const isObject =
-            typeof v === 'object' &&
-            v !== null &&
-            (v.__proto__ === Object.prototype || Array.isArray(v));
+          const vType = typeParser(v);
+          const [ValueDisplay, _, isItem] = typeDisplayParser(v, vType);
 
           return (
             <React.Fragment key={k}>
-              {isObject ? (
-                <ObjectRender
-                  name={isArray ? i : k}
-                  data={v}
+              {isItem ? (
+                <ItemRender
+                  name={type === 'array' ? i : k}
+                  value={v}
                   indent={indent + 1}
                 />
               ) : (
-                <ItemRender
-                  name={isArray ? i : k}
+                <ValueDisplay
+                  name={type === 'array' ? i : k}
                   value={v}
                   indent={indent + 1}
+                  type={vType}
                 />
               )}
             </React.Fragment>

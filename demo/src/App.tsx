@@ -8,6 +8,16 @@ const DEFAULT_JSON = {
   integer: 123,
   float: 3.1415926,
   success: true,
+  obj: {
+    foo: 'bar',
+    baz: {
+      qux: 'quux',
+      fn() {
+        const a = 1;
+        return a;
+      },
+    },
+  },
   arr: [
     'a',
     -Infinity,

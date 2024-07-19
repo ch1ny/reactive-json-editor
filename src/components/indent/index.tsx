@@ -1,8 +1,8 @@
-import { useContext } from '@/provider';
+import { useIndent } from '@/provider';
 import React, { memo } from 'react';
 
 export const Indent = memo(function Indent({ indent }: { indent: number }) {
-  const { indentSize = 10 } = useContext();
+  const { indentSize = 10 } = useIndent();
 
   return (
     <div

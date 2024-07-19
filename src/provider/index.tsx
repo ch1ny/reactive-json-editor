@@ -1,15 +1,28 @@
 import React, { memo } from 'react';
+import { type IndentProps, IndentProvider, useIndent } from './indent';
+import {
+  type TypeParserProps,
+  TypeParserProvider,
+  useTypeParser,
+} from './type-parser';
 
-export type ProviderProps = {
-  indentSize?: number;
-};
-
-export const Context = React.createContext<ProviderProps>({});
+export type ProviderProps = IndentProps & TypeParserProps;
 
 export const Provider = memo(
   ({ children, ...value }: { children: React.ReactNode } & ProviderProps) => {
-    return <Context.Provider value={value}>{children}</Context.Provider>;
+    return (
+      <>
+        <IndentProvider indentSize={value.indentSize}>
+          <TypeParserProvider
+            typeParser={value.typeParser}
+            typeDisplayParser={value.typeDisplayParser}
+          >
+            {children}
+          </TypeParserProvider>
+        </IndentProvider>
+      </>
+    );
   },
 );
 
-export const useContext = () => React.useContext(Context);
+export { useIndent, useTypeParser };

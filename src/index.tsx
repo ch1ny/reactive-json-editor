@@ -1,11 +1,10 @@
+import { defineTypeDisplayParser, defineTypeParser } from '@/common';
 import cls from 'classnames';
 import React, { memo, useMemo } from 'react';
 import { ObjectRender } from './components';
 import './index.less';
 import { Provider, type ProviderProps } from './provider';
 import { Themes, ThemeSuffix } from './themes';
-
-export { Themes };
 
 export type JsonEditorProps = {
   json: object;
@@ -33,5 +32,7 @@ function JsonEditor(props: JsonEditorProps) {
     </Provider>
   );
 }
+
+export { defineTypeDisplayParser, defineTypeParser, Themes };
 
 export default memo(JsonEditor);
