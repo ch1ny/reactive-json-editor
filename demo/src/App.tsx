@@ -38,9 +38,6 @@ function App() {
         json={DEFAULT_JSON}
         rootName="root"
         indentSize={20}
-        style={{
-          fontFamily: 'monospace',
-        }}
         theme={'light'}
       />
     </>

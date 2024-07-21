@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'rje-icon'; /* Project id 4627985 */
+  src:
+    url('index.woff2?t=1721544287303') format('woff2'),
+    url('index.woff?t=1721544287303') format('woff'),
+    url('index.ttf?t=1721544287303') format('truetype');
+}
+
+.rje-icon {
+  font-family: 'rje-icon' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rje-icon-caret-right:before {
+  content: '\e8ec';
+}
