@@ -1,9 +1,10 @@
 export class LRU<K, V> {
   private _limit: number;
-  private _cache: Map<K, V> = new Map();
+  private _cache: Map<K, V>;
 
   constructor(maxSize: number) {
     this._limit = maxSize;
+    this._cache = new Map();
   }
 
   get size() {
@@ -32,7 +33,6 @@ export class LRU<K, V> {
 
   clear() {
     this._cache.clear();
-    this._cache = null;
   }
 
   resize(maxSize: number) {
