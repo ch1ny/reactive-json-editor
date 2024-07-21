@@ -1,6 +1,5 @@
 import { stopPropagation } from '@/common';
-import { useTypeParser } from '@/provider';
-import { useSizeRender } from '@/provider/size-render';
+import { useSizeRender, useTypeParser } from '@/provider';
 import cls from 'classnames';
 import React, { memo, useMemo, useState } from 'react';
 import { Indent } from '../indent';
@@ -18,14 +17,13 @@ export const ObjectRender = memo(function ObjectRender(props: IProps) {
   const { name, data, indent = 0 } = props;
 
   const { typeParser, typeDisplayParser } = useTypeParser();
+  const SizeRender = useSizeRender();
 
   const size = useMemo(() => Object.keys(data).length, [data]);
   const type = useMemo(() => typeParser(data), [typeParser, data]);
   const isArray = useMemo(() => type === 'array', [type]);
 
   const [expanded, setExpanded] = useState(true);
-
-  const SizeRender = useSizeRender();
 
   return (
     <div className={cls('rje-object', expanded && 'rje-object-expanded')}>

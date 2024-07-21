@@ -1,6 +1,10 @@
 import React, { memo } from 'react';
 import { type IndentProps, IndentProvider, useIndent } from './indent';
-import { type SizeRenderProps, SizeRenderProvider } from './size-render';
+import {
+  type SizeRenderProps,
+  SizeRenderProvider,
+  useSizeRender,
+} from './size-render';
 import {
   type TypeParserProps,
   TypeParserProvider,
@@ -14,18 +18,18 @@ export const Provider = memo(
     return (
       <>
         <IndentProvider indentSize={value.indentSize}>
-          <TypeParserProvider
-            typeParser={value.typeParser}
-            typeDisplayParser={value.typeDisplayParser}
-          >
-            <SizeRenderProvider displaySize={value.displaySize}>
+          <SizeRenderProvider displaySize={value.displaySize}>
+            <TypeParserProvider
+              typeParser={value.typeParser}
+              typeDisplayParser={value.typeDisplayParser}
+            >
               {children}
-            </SizeRenderProvider>
-          </TypeParserProvider>
+            </TypeParserProvider>
+          </SizeRenderProvider>
         </IndentProvider>
       </>
     );
   },
 );
 
-export { useIndent, useTypeParser };
+export { useIndent, useSizeRender, useTypeParser };
