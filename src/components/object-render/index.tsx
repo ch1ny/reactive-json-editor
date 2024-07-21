@@ -1,5 +1,6 @@
 import { stopPropagation } from '@/common';
 import { useTypeParser } from '@/provider';
+import { useSizeRender } from '@/provider/size-render';
 import cls from 'classnames';
 import React, { memo, useMemo, useState } from 'react';
 import { Indent } from '../indent';
@@ -23,6 +24,8 @@ export const ObjectRender = memo(function ObjectRender(props: IProps) {
   const isArray = useMemo(() => type === 'array', [type]);
 
   const [expanded, setExpanded] = useState(true);
+
+  const SizeRender = useSizeRender();
 
   return (
     <div className={cls('rje-object', expanded && 'rje-object-expanded')}>
@@ -53,7 +56,11 @@ export const ObjectRender = memo(function ObjectRender(props: IProps) {
           </>
         )}
         <div className="rje-extra rje-object-extra" onClick={stopPropagation}>
-          <div className="rje-object-size">{size} items</div>
+          {SizeRender && (
+            <div className="rje-object-size">
+              <SizeRender size={size} />
+            </div>
+          )}
         </div>
       </div>
       {expanded && (

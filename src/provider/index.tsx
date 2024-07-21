@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
 import { type IndentProps, IndentProvider, useIndent } from './indent';
+import { type SizeRenderProps, SizeRenderProvider } from './size-render';
 import {
   type TypeParserProps,
   TypeParserProvider,
   useTypeParser,
 } from './type-parser';
 
-export type ProviderProps = IndentProps & TypeParserProps;
+export type ProviderProps = IndentProps & TypeParserProps & SizeRenderProps;
 
 export const Provider = memo(
   ({ children, ...value }: { children: React.ReactNode } & ProviderProps) => {
@@ -17,7 +18,9 @@ export const Provider = memo(
             typeParser={value.typeParser}
             typeDisplayParser={value.typeDisplayParser}
           >
-            {children}
+            <SizeRenderProvider displaySize={value.displaySize}>
+              {children}
+            </SizeRenderProvider>
           </TypeParserProvider>
         </IndentProvider>
       </>
